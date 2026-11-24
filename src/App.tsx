@@ -212,7 +212,7 @@ export default function App() {
             {images.hero === ORIGINAL_IMAGES.hero && (
               <source
                 media="(max-width: 700px)"
-                srcSet="/images/portada-movil.webp"
+                srcSet="./images/portada-movil.webp"
               />
             )}
             <img
