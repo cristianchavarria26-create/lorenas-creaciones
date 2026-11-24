@@ -32,8 +32,8 @@ export const KEYS = {
 };
 export const ORIGINAL_IMAGES: SiteImages = {
   logo: "",
-  hero: "/images/portada.webp",
-  about: "/images/el-taller.webp",
+  hero: "./images/portada.webp",
+  about: "./images/el-taller.webp",
 };
 
 // Reference designs have no invented price or stock quantity.
@@ -42,7 +42,7 @@ const inspirationCollection: Product[] = [
     id: "osito-miel",
     name: "Osito Miel",
     category: "Amigurumis",
-    image: "/images/osito-miel.webp",
+    image: "./images/osito-miel.webp",
     description:
       "Un pequeño compañero de color miel, con hocico crema y una delicada corbata verde salvia. Un diseño lleno de ternura para regalar en una ocasión especial.",
   },
@@ -50,7 +50,7 @@ const inspirationCollection: Product[] = [
     id: "muneca-violeta",
     name: "Muñeca Violeta",
     category: "Muñecas",
-    image: "/images/muneca-violeta.webp",
+    image: "./images/muneca-violeta.webp",
     description:
       "Una muñequita de larga trenza y vestido lavanda, con una pequeña flor en el cabello. Podemos conversar sobre los colores de su vestido y los detalles que la harán tuya.",
   },
@@ -58,7 +58,7 @@ const inspirationCollection: Product[] = [
     id: "ramo-tulipanes",
     name: "Tulipanes eternos",
     category: "Flores",
-    image: "/images/ramo-tulipanes.webp",
+    image: "./images/ramo-tulipanes.webp",
     description:
       "Un ramo de tulipanes a crochet en tonos rosa, durazno y amarillo suave. Flores que no se marchitan, pensadas para guardar un recuerdo bonito.",
   },
@@ -66,7 +66,7 @@ const inspirationCollection: Product[] = [
     id: "conejita-olivia",
     name: "Conejita Olivia",
     category: "Personalizados",
-    image: "/images/conejita-olivia.webp",
+    image: "./images/conejita-olivia.webp",
     description:
       "Orejas largas, un vestidito rosa y una flor en la cintura. Esta conejita es una inspiración para crear una pieza a tu gusto, eligiendo sus colores y pequeños detalles.",
   },
