@@ -1,0 +1,11 @@
+{
+  "sitio": "Lorenas_Creaciones",
+  "version": 1,
+  "nota": "Catálogo publicado. Reemplaza este archivo por el productos.json que descargas desde el panel de administración.",
+  "productos": [
+    { "id": "osito-miel", "name": "Osito Miel", "price": 0, "category": "Amigurumis", "available": true, "inspiration": true, "image": "/images/osito-miel.webp", "description": "Un pequeño compañero de color miel, con hocico crema y una delicada corbata verde salvia. Un diseño lleno de ternura para regalar en una ocasión especial." },
+    { "id": "muneca-violeta", "name": "Muñeca Violeta", "price": 0, "category": "Muñecas", "available": true, "inspiration": true, "image": "/images/muneca-violeta.webp", "description": "Una muñequita de larga trenza y vestido lavanda, con una pequeña flor en el cabello. Podemos conversar sobre los colores de su vestido y los detalles que la harán tuya." },
+    { "id": "ramo-tulipanes", "name": "Tulipanes eternos", "price": 0, "category": "Flores", "available": true, "inspiration": true, "image": "/images/ramo-tulipanes.webp", "description": "Un ramo de tulipanes a crochet en tonos rosa, durazno y amarillo suave. Flores que no se marchitan, pensadas para guardar un recuerdo bonito." },
+    { "id": "conejita-olivia", "name": "Conejita Olivia", "price": 0, "category": "Personalizados", "available": true, "inspiration": true, "image": "/images/conejita-olivia.webp", "description": "Orejas largas, un vestidito rosa y una flor en la cintura. Esta conejita es una inspiración para crear una pieza a tu gusto, eligiendo sus colores y pequeños detalles." }
+  ]
+}
