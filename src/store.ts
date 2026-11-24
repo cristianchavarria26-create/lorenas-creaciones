@@ -81,7 +81,7 @@ const inspirationCollection: Product[] = [
 export function isImage(value: unknown): value is string {
   return (
     typeof value === "string" &&
-    (/^\/images\/[\w-]+\.webp$/.test(value) ||
+    (/^(?:\.\/|\/)?images\/[\w-]+\.webp$/.test(value) ||
       /^data:image\/(webp|jpeg|png|avif);base64,/.test(value))
   );
 }
@@ -115,7 +115,7 @@ export function validProducts(value: unknown): value is Product[] {
   });
 }
 
-export const PUBLISHED_CATALOG = "/productos.json";
+export const PUBLISHED_CATALOG = "./productos.json";
 
 /** Products saved by the local editor in this browser, if any. */
 export function loadSavedProducts(): Product[] | null {
