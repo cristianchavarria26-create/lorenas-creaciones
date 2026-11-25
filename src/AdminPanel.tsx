@@ -125,37 +125,43 @@ function ProductEditor({
       setBusy(false);
     }
   };
-  const submit = (e: FormEvent) => {
-    e.preventDefault();
-    setError("");
-    if (!image) {
-      setError("Añade una fotografía para guardar la creación.");
-      return;
+  const submit = async (e: FormEvent) => {
+  e.preventDefault();
+  setError("");
+  if (!image) {
+    setError("Añade una fotografía para guardar la creación.");
+    return;
+  }
+  if (!name.trim()) {
+    setError("Escribe un nombre para la creación.");
+    return;
+  }
+  const amount = Number(price);
+  if (!Number.isSafeInteger(amount) || amount < 0 || amount % 500 !== 0) {
+    setError("El precio debe ser positivo o cero, en incrementos de $500.");
+    return;
+  }
+  setBusy(true);
+  try {
+    const saved = await onSave({
+      id: product?.id || crypto.randomUUID(),
+      name: name.trim(),
+      price: amount,
+      category,
+      description: description.trim(),
+      available,
+      image,
+      inspiration: false,
+    });
+    if (!saved) {
+      setError("No se pudo guardar. Inténtalo nuevamente.");
     }
-    if (!name.trim()) {
-      setError("Escribe un nombre para la creación.");
-      return;
-    }
-    const amount = Number(price);
-    if (!Number.isSafeInteger(amount) || amount < 0 || amount % 500 !== 0) {
-      setError("El precio debe ser positivo o cero, en incrementos de $500.");
-      return;
-    }
-    try {
-      onSave({
-        id: product?.id || crypto.randomUUID(),
-        name: name.trim(),
-        price: amount,
-        category,
-        description: description.trim(),
-        available,
-        image,
-        inspiration: false,
-      });
-    } catch (err) {
-      setError(errorMessage(err));
-    }
-  };
+  } catch (err) {
+    setError(errorMessage(err));
+  } finally {
+    setBusy(false);
+  }
+};
   return (
     <div className="product-editor">
       <button type="button" className="back-link" onClick={onBack}>
