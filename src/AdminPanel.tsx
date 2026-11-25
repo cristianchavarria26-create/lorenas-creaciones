@@ -780,24 +780,30 @@ export default function AdminPanel({
                         className={`availability ${p.available ? "on" : ""}`}
                         aria-checked={p.available}
                         aria-label={`Disponibilidad de ${p.name}`}
-                        onClick={() => {
-                          try {
-                            onSaveProducts(
-                              products.map((item) =>
-                                item.id === p.id
-                                  ? { ...item, available: !p.available }
-                                  : item,
-                              ),
-                            );
-                            notify(
-                              p.available
-                                ? "Producto marcado como agotado. Ya no se muestra en el catálogo."
-                                : "Producto disponible y visible en el catálogo.",
-                            );
-                          } catch (err) {
-                            notify(errorMessage(err), true);
-                          }
-                        }}
+                        onClick={async () => {
+  try {
+    const saved = await onSaveProducts(
+      products.map((item) =>
+        item.id === p.id
+          ? { ...item, available: !p.available }
+          : item,
+      ),
+    );
+
+    if (!saved) {
+      notify("No se pudo actualizar la disponibilidad.", true);
+      return;
+    }
+
+    notify(
+      p.available
+        ? "Producto marcado como agotado. Ya no se muestra en el catálogo."
+        : "Producto disponible y visible en el catálogo.",
+    );
+  } catch (err) {
+    notify(errorMessage(err), true);
+  }
+}}
                       >
                         <span />
                         {p.available ? "Disponible" : "Agotado"}
