@@ -98,7 +98,7 @@ function ProductEditor({
   onBack,
 }: {
   product: Product | null;
-  onSave: (p: Product) => void;
+  onSave: (p: Product) => Promise<boolean>;
   onBack: () => void;
 }) {
   const [name, setName] = useState(product?.name || "");
