@@ -25,28 +25,19 @@ interface AdminProps {
 }
 type Notify = (text: string, error?: boolean) => void;
 
-function LocalLogin({ onUnlock }: { onUnlock: () => void }) {
-  const [setup] = useState(() => {
-    try {
-      return !localStorage.getItem(KEYS.access);
-    } catch {
-      return false;
-    }
-  });
+function AdminLogin({ onUnlock }: { onUnlock: () => void }) {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+
   const submit = async (e: FormEvent) => {
     e.preventDefault();
     setError("");
-    if (setup && password !== confirm) {
-      setError("Las claves no coinciden. Revisa la confirmación.");
-      return;
-    }
     setBusy(true);
+
     try {
-      await openLocalEditor(password, setup);
+      await adminLogin(email, password);
       onUnlock();
     } catch (err) {
       setError(errorMessage(err));
@@ -54,49 +45,38 @@ function LocalLogin({ onUnlock }: { onUnlock: () => void }) {
       setBusy(false);
     }
   };
+
   return (
     <>
       <div className="login-brand">
         <Brand />
       </div>
-      <span className="eyebrow">Administración local</span>
-      <h2>{setup ? "Prepara tu taller." : "Vuelve a tu taller."}</h2>
+      <span className="eyebrow">Administración en línea</span>
+      <h2>Bienvenida a tu taller.</h2>
       <p className="body-copy">
-        {setup
-          ? "Es tu primer acceso en este navegador. Crea una clave para editar tus productos y las imágenes del sitio."
-          : "Introduce tu clave local para gestionar el catálogo de este dispositivo."}
+        Ingresa con tu correo y contraseña de administrador.
       </p>
       <form className="editor-form" onSubmit={submit}>
         <label>
-          {setup ? "Crea tu clave local" : "Clave local"}
+          Correo electrónico
+          <input
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Tu correo electrónico"
+          />
+        </label>
+        <label>
+          Contraseña
           <input
             type="password"
             required
-            minLength={setup ? 10 : 1}
-            maxLength={200}
-            autoComplete={setup ? "new-password" : "current-password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder={
-              setup ? "Al menos 10 caracteres" : "Tu clave de acceso"
-            }
+            placeholder="Tu contraseña"
           />
         </label>
-        {setup && (
-          <label>
-            Confirma tu clave
-            <input
-              type="password"
-              required
-              minLength={10}
-              maxLength={200}
-              autoComplete="new-password"
-              value={confirm}
-              onChange={(e) => setConfirm(e.target.value)}
-              placeholder="Repite la clave"
-            />
-          </label>
-        )}
         {error && (
           <p role="alert" className="form-error">
             {error}
@@ -104,16 +84,11 @@ function LocalLogin({ onUnlock }: { onUnlock: () => void }) {
         )}
         <button className="button primary w-full" type="submit" disabled={busy}>
           <Icon name="lock" size={16} />
-          {busy
-            ? "Verificando..."
-            : setup
-              ? "Crear clave y entrar"
-              : "Iniciar sesión"}
+          {busy ? "Verificando..." : "Iniciar sesión"}
         </button>
       </form>
       <p className="privacy-note">
-        Esta clave abre el editor local, no una cuenta en línea. Los cambios se
-        guardan solo en este navegador y no se sincronizan entre dispositivos.
+        Acceso privado para administrar los productos e imágenes de la tienda.
       </p>
     </>
   );
