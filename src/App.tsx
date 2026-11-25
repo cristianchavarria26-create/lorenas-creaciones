@@ -122,10 +122,16 @@ export default function App() {
     return false;
   }
 };
-  const saveImages = (next: SiteImages) => {
-    persist(KEYS.images, next);
-    setImages(next);
-  };
+  const saveImages = async (next: SiteImages) => {
+  try {
+    const saved = await saveCloudImages(next);
+    setImages(saved);
+    return true;
+  } catch (error) {
+    alert(error instanceof Error ? error.message : "Error al guardar imágenes");
+    return false;
+  }
+};
   const startQuote = (p: Product | null = null) => {
     setReference(p);
     setProductId(null);
