@@ -60,12 +60,39 @@ export default function App() {
     : filters;
 
   useEffect(() => {
-    // Only the first visit needs to fetch the published catalog.
-    let cancelled = false;
-    if (products === null)
-      resolveProducts().then((list) => {
-        if (!cancelled) setProducts(list);
-      });
+  let cancelled = false;
+
+  async function loadCloudData() {
+    try {
+      const [cloudProducts, cloudImages] = await Promise.all([
+        fetchCloudProducts(),
+        fetchCloudImages(),
+      ]);
+
+      if (cancelled) return;
+
+      const published = await resolveProducts();
+
+      if (cancelled) return;
+
+      setProducts(cloudProducts.length ? cloudProducts : published);
+
+      if (cloudImages) {
+        setImages(cloudImages);
+      }
+    } catch {
+      if (!cancelled) {
+        setProducts(await resolveProducts());
+      }
+    }
+  }
+
+  loadCloudData();
+
+  return () => {
+    cancelled = true;
+  };
+}, []);
     return () => {
       cancelled = true;
     };
