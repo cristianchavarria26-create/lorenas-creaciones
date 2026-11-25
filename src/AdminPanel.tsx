@@ -727,8 +727,7 @@ export default function AdminPanel({
                   <div className="confirmation" role="alert">
                     <h4>¿Eliminar «{deleting.name}»?</h4>
                     <p>
-                      Esta creación se quitará del catálogo local. Esta acción
-                      no se puede deshacer.
+                      Esta creación se quitará del catálogo. Esta acción
                     </p>
                     <div className="inline-actions">
                       <button
