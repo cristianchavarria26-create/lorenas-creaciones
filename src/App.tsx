@@ -37,7 +37,7 @@ const filters: { label: Filter; icon: IconName }[] = [
 
 export default function App() {
   // null while the published catalog is being fetched for a visitor.
-  const [products, setProducts] = useState<Product[] | null>(loadSavedProducts);
+  const [products, setProducts] = useState<Product[] | null>(null);
   const catalog = products ?? [];
   const [images, setImages] = useState(loadImages);
   const [filter, setFilter] = useState<Filter>("Todas");
