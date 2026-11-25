@@ -18,9 +18,8 @@ import type { Category, Product, SiteImages } from "./store";
 interface AdminProps {
   products: Product[];
   images: SiteImages;
-  onSaveProducts: (next: Product[]) => void;
-  onSaveImages: (next: SiteImages) => void;
-  onClose: () => void;
+  onSaveProducts: (next: Product[]) => Promise<boolean>;
+onSaveImages: (next: SiteImages) => Promise<boolean>;
 }
 type Notify = (text: string, error?: boolean) => void;
 
