@@ -742,17 +742,23 @@ export default function AdminPanel({
                       </button>
                       <button
                         className="button danger small"
-                        onClick={() => {
-                          try {
-                            onSaveProducts(
-                              products.filter((p) => p.id !== deleting.id),
-                            );
-                            setDeleting(null);
-                            notify("Producto eliminado del catálogo.");
-                          } catch (err) {
-                            notify(errorMessage(err), true);
-                          }
-                        }}
+                        onClick={async () => {
+  try {
+    const saved = await onSaveProducts(
+      products.filter((p) => p.id !== deleting.id),
+    );
+
+    if (!saved) {
+      notify("No se pudo eliminar el producto.", true);
+      return;
+    }
+
+    setDeleting(null);
+    notify("Producto eliminado correctamente de la nube.");
+  } catch (err) {
+    notify(errorMessage(err), true);
+  }
+}}
                       >
                         Sí, eliminar
                       </button>
