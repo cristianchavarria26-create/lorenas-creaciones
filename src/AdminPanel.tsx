@@ -302,26 +302,32 @@ function ImageSettings({
     },
   ];
   const upload = async (
-    e: ChangeEvent<HTMLInputElement>,
-    key: keyof SiteImages,
-  ) => {
-    const file = e.target.files?.[0];
-    e.target.value = "";
-    if (!file) return;
-    setBusy(key);
-    try {
-      const image = await optimizeImage(
-        file,
-        key === "hero" ? 2000 : key === "logo" ? 480 : 1100,
-      );
-      onSave({ ...images, [key]: image });
-      notify("Imagen actualizada en este navegador.");
-    } catch (err) {
-      notify(errorMessage(err), true);
-    } finally {
-      setBusy("");
+  e: ChangeEvent<HTMLInputElement>,
+  key: keyof SiteImages,
+) => {
+  const file = e.target.files?.[0];
+  e.target.value = "";
+  if (!file) return;
+  setBusy(key);
+  try {
+    const image = await optimizeImage(
+      file,
+      key === "hero" ? 2000 : key === "logo" ? 480 : 1100,
+    );
+    const saved = await onSave({ ...images, [key]: image });
+
+    if (!saved) {
+      notify("No se pudo guardar la imagen. Inténtalo nuevamente.", true);
+      return;
     }
-  };
+
+    notify("Imagen guardada en la nube.");
+  } catch (err) {
+    notify(errorMessage(err), true);
+  } finally {
+    setBusy("");
+  }
+};
   return (
     <div className="image-settings">
       <h3>Imágenes del sitio</h3>
