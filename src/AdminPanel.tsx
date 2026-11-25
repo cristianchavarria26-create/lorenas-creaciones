@@ -572,15 +572,21 @@ function Backups({
             </button>
             <button
               className="button primary small"
-              onClick={() => {
-                try {
-                  onSave(pending);
-                  setPending(null);
-                  notify("Catálogo restaurado correctamente.");
-                } catch (err) {
-                  notify(errorMessage(err), true);
-                }
-              }}
+              onClick={async () => {
+  try {
+    const saved = await onSave(pending);
+
+    if (!saved) {
+      notify("No se pudo restaurar el catálogo.", true);
+      return;
+    }
+
+    setPending(null);
+    notify("Catálogo restaurado correctamente en la nube.");
+  } catch (err) {
+    notify(errorMessage(err), true);
+  }
+}}
             >
               Restaurar copia
             </button>
