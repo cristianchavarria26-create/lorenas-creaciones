@@ -451,7 +451,7 @@ function Backups({
       a.click();
       window.setTimeout(() => URL.revokeObjectURL(url), 2000);
       notify(
-        "productos.json descargado con todos tus productos y fotografías. Súbelo junto a index.html para publicarlo.",
+        "productos.json descargado correctamente. Guarda este archivo como copia de seguridad de tu catálogo.",
       );
     } catch (err) {
       notify(errorMessage(err), true);
