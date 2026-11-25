@@ -82,7 +82,8 @@ export function isImage(value: unknown): value is string {
   return (
     typeof value === "string" &&
     (/^(?:\.\/|\/)?images\/[\w-]+\.webp$/.test(value) ||
-      /^data:image\/(webp|jpeg|png|avif);base64,/.test(value))
+      /^data:image\/(webp|jpeg|png|avif);base64,/.test(value) ||
+      /^https:\/\/mygugeivnobjazvsoxat\.supabase\.co\/storage\/v1\/object\/public\/lorenas-imagenes\/[\w.-]+$/.test(value))
   );
 }
 
