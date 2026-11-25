@@ -8,7 +8,6 @@ import {
   errorMessage,
   fileAsDataURL,
   formatPrice,
-  openLocalEditor,
   optimizeImage,
   validProducts,
   fetchPublishedProducts,
