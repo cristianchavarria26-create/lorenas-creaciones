@@ -9,12 +9,16 @@ import {
   ORIGINAL_IMAGES,
   formatPrice,
   loadImages,
-  loadSavedProducts,
   resolveProducts,
-  persist,
   whatsapp,
 } from "./store";
 import type { Filter, Product, SiteImages } from "./store";
+import {
+  fetchCloudImages,
+  fetchCloudProducts,
+  saveCloudImages,
+  saveCloudProducts,
+} from "./supabase";
 
 const AdminPanel = lazy(() => import("./AdminPanel"));
 const navigation = [
