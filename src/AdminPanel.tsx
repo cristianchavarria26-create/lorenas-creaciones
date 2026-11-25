@@ -612,7 +612,7 @@ export default function AdminPanel({
       className={unlocked ? "admin-modal" : "form-modal login-modal"}
     >
       {!unlocked ? (
-        <LocalLogin onUnlock={() => setUnlocked(true)} />
+        <AdminLogin onUnlock={() => setUnlocked(true)} />
       ) : (
         <>
           <div className="admin-heading">
