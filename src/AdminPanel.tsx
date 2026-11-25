@@ -371,15 +371,21 @@ function ImageSettings({
             </button>
             <button
               className="button primary small"
-              onClick={() => {
-                try {
-                  onSave({ ...ORIGINAL_IMAGES });
-                  setRestore(false);
-                  notify("Se restauraron las imágenes originales.");
-                } catch (e) {
-                  notify(errorMessage(e), true);
-                }
-              }}
+              onClick={async () => {
+  try {
+    const saved = await onSave({ ...ORIGINAL_IMAGES });
+
+    if (!saved) {
+      notify("No se pudieron restaurar las imágenes.", true);
+      return;
+    }
+
+    setRestore(false);
+    notify("Imágenes originales restauradas en la nube.");
+  } catch (e) {
+    notify(errorMessage(e), true);
+  }
+}}
             >
               Sí, restaurar
             </button>
