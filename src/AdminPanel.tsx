@@ -4,7 +4,6 @@ import { Brand, Icon, Sprig } from "./Artwork";
 import Modal from "./Modal";
 import {
   CATEGORIES,
-  KEYS,
   ORIGINAL_IMAGES,
   errorMessage,
   fileAsDataURL,
