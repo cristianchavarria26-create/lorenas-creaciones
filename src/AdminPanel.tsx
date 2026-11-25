@@ -858,7 +858,7 @@ export default function AdminPanel({
           )}
           <p className="admin-local-note">
             <Icon name="lock" size={13} />
-            Editor local. Los cambios solo se guardan en este navegador.
+            Los cambios se guardan en la nube y se comparten con todas las personas que visiten el sitio.
           </p>
         </>
       )}
