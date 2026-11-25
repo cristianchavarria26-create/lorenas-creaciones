@@ -503,10 +503,7 @@ function Backups({
     <div className="backup-panel">
       <h3>Publicar y respaldar</h3>
       <p className="body-copy">
-        Lo que guardas en este panel solo se ve en este navegador. Para que
-        todas las personas vean tu catálogo, descarga{" "}
-        <strong>productos.json</strong> y súbelo a tu hosting en la misma
-        carpeta que <strong>index.html</strong>, reemplazando el anterior.
+        Tu catálogo se guarda en la nube y se comparte con todas las personas que visiten el sitio. Puedes descargar productos.json como copia de seguridad.
       </p>
       <div className="backup-option">
         <div>
