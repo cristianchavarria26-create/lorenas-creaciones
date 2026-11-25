@@ -623,7 +623,8 @@ export default function AdminPanel({
             </div>
             <button
               className="text-button"
-              onClick={() => {
+              onClick={() => { 
+                adminLogout();
                 setUnlocked(false);
                 changeTab("Productos");
               }}
