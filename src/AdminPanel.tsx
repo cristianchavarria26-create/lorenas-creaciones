@@ -273,7 +273,7 @@ function ImageSettings({
   notify,
 }: {
   images: SiteImages;
-  onSave: (next: SiteImages) => void;
+  onSave: (next: SiteImages) => Promise<boolean>;
   notify: Notify;
 }) {
   const [busy, setBusy] = useState("");
