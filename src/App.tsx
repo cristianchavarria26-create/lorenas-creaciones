@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+wimport { lazy, Suspense, useEffect, useState } from "react";
 import type { CSSProperties } from "react";
 import { Brand, Icon, Sprig, ThreadHeart, YarnMark } from "./Artwork";
 import type { IconName } from "./Artwork";
@@ -112,10 +112,16 @@ export default function App() {
     };
   }, []);
 
-  const saveProducts = (next: Product[]) => {
-    persist(KEYS.products, next);
-    setProducts(next);
-  };
+  const saveProducts = async (next: Product[]) => {
+  try {
+    const saved = await saveCloudProducts(next);
+    setProducts(saved);
+    return true;
+  } catch (error) {
+    alert(error instanceof Error ? error.message : "Error al guardar productos");
+    return false;
+  }
+};
   const saveImages = (next: SiteImages) => {
     persist(KEYS.images, next);
     setImages(next);
