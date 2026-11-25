@@ -121,9 +121,7 @@ export async function fetchCloudProducts() {
     "/rest/v1/products?select=id,data,active,position,sort_order&order=sort_order.asc"
   );
 
-  return rows
-    .filter((row: any) => row.active !== false)
-    .map((row: any) => row.data);
+  return rows.map((row: any) => row.data);
 }
 
 export async function saveCloudProducts(products: any[]) {
