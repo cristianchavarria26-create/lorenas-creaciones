@@ -27,7 +27,8 @@ async function request(path: string, options: any = {}, token?: string) {
     throw new Error(await response.text());
   }
 
-  return response.status === 204 ? null : response.json();
+  const text = await response.text();
+return text ? JSON.parse(text) : null;
 }
 
 export async function adminLogin(email: string, password: string) {
