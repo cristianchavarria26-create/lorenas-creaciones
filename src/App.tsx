@@ -1,4 +1,4 @@
-wimport { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import type { CSSProperties } from "react";
 import { Brand, Icon, Sprig, ThreadHeart, YarnMark } from "./Artwork";
 import type { IconName } from "./Artwork";
