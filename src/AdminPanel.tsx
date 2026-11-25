@@ -594,15 +594,18 @@ export default function AdminPanel({
     setDeleting(null);
     setNotice(null);
   };
-  const save = (p: Product) => {
-    onSaveProducts(
-      products.some((item) => item.id === p.id)
-        ? products.map((item) => (item.id === p.id ? p : item))
-        : [...products, p],
-    );
-    setEditing(null);
-    notify("Creación guardada en tu catálogo local.");
-  };
+  const save = async (p: Product) => {
+  const saved = await onSaveProducts(
+    products.some((item) => item.id === p.id)
+      ? products.map((item) => (item.id === p.id ? p : item))
+      : [...products, p],
+  );
+
+  if (!saved) return;
+
+  setEditing(null);
+  notify("Creación guardada en la nube.");
+};
   return (
     <Modal
       label="Administración del taller"
