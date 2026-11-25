@@ -392,7 +392,7 @@ function Backups({
   notify,
 }: {
   products: Product[];
-  onSave: (next: Product[]) => void;
+  onSave: (next: Product[]) => Promise<boolean>;
   notify: Notify;
 }) {
   const [busy, setBusy] = useState(false);
