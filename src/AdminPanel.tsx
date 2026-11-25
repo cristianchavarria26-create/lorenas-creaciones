@@ -554,7 +554,7 @@ function Backups({
       </div>
       {pending && (
         <div className="confirmation">
-          <h4>¿Reemplazar el catálogo de este navegador?</h4>
+          <h4>¿Reemplazar el catálogo de la nube?</h4>
           <p>
             Se reemplazarán los {products.length} productos actuales por{" "}
             {pending.length} productos del archivo. Las imágenes del sitio y la
